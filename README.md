@@ -1,4 +1,0 @@
-fouxlay
-=======
-
-Gentoo Overlay

@@ -1,0 +1,18 @@
+<repositories version="1.0">
+	<repo
+		quality="experimental"
+		status="unofficial">
+		<name>mrpdaemon</name>
+		<description lang="en">Foux's Gentoo overlay</description>
+		<longdescription lang="en">
+			Ebuilds for software that I want, who aren't in the portage tree
+		</longdescription>
+		<homepage>https://github.com/foux/fouxlay</homepage>
+		<owner type="person">
+			<email>markpariente@gmail.com</email>
+			<name>Mark Pariente</name>
+		</owner>
+		<source type="git">git://github.com/foux/fouxlay.git</source>
+		<source type="git">git+ssh://git@github.com:foux/fouxlay.git</source>
+	</repo>
+</repositories>
