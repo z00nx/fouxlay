@@ -6,8 +6,8 @@ EAPI="2"
 
 inherit eutils
 
-MAGIC1="36"
-MAGIC2="8895eb2"
+MAGIC1="46"
+MAGIC2="a6c6228"
 URI="http://plex.r.worldssl.net/plex-media-server"
 DL_INSTRUCTIONS_URL="http://forums.plexapp.com/index.php/topic/64569-download-instructions/"
 DESCRIPTION="Plex Media Server is a free media library that is intended for use with a plex client available for OS X, iOS and Android systems. It is a standalone product which can be used in conjunction with every program, that knows the API. For managing the library a web based interface is provided."
