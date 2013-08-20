@@ -6,13 +6,12 @@ EAPI="2"
 
 inherit eutils
 
-MAGIC1="46"
-MAGIC2="a6c6228"
-URI="http://plex.r.worldssl.net/plex-media-server"
-DL_INSTRUCTIONS_URL="http://forums.plexapp.com/index.php/topic/64569-download-instructions/"
+MAGIC1="125"
+MAGIC2="ffe2a5d"
+URI="http://downloads.plexapp.com/plex-media-server/"
 DESCRIPTION="Plex Media Server is a free media library that is intended for use with a plex client available for OS X, iOS and Android systems. It is a standalone product which can be used in conjunction with every program, that knows the API. For managing the library a web based interface is provided."
 HOMEPAGE="http://www.plexapp.com/"
-# KEYWORDS="-* ~x86 ~amd64"
+KEYWORDS="-* ~x86 ~amd64"
 SRC_URI="x86?	( 
 			${URI}/${PV}.${MAGIC1}-${MAGIC2}/plexmediaserver_${PV}.${MAGIC1}-${MAGIC2}_i386.deb
 		 )
@@ -25,19 +24,12 @@ IUSE=""
 
 RDEPEND="net-dns/avahi"
 DEPEND="${RDEPEND}"
-RESTRICT="fetch"
 
 INIT_SCRIPT="${ROOT}/etc/init/plexmediaserver"
 
 pkg_setup() {
 	enewgroup plex
 	enewuser plex -1 /bin/bash /var/lib/plexmediaserver "plex" --system
-}
-
-pkg_nofetch() {
-	einfo "This beta build is restricted to PlexPass users."
-	einfo "Please see $DL_INSTRUCTIONS_URL for download informations"
-	einfo "You can then download from ${SRC_URI} and place the file in $DISTDIR"
 }
 
 pkg_preinst() {
