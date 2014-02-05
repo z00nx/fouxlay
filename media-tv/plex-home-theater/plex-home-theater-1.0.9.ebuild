@@ -13,7 +13,7 @@ SLOT="0"
 KEYWORDS="~amd64"
 
 RDEPEND="media-libs/freetype
-	media-libs/libsdl
+	media-libs/libsdl[X,opengl]
 	media-libs/sdl-image
 	media-libs/sdl-mixer
 	virtual/opengl
@@ -38,7 +38,10 @@ RDEPEND="media-libs/freetype
 	media-video/rtmpdump
 	media-libs/libshairport
 	x11-libs/libva[opengl]
-	x11-libs/libvdpau"
+	x11-libs/libvdpau
+	media-libs/libmodplug
+	dev-libs/libcdio
+	media-sound/lame"
 
 DEPEND="$RDEPEND
 	dev-libs/yajl
