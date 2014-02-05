@@ -62,3 +62,11 @@ src_configure() {
 	cmake-utils_src_configure ${mycmakeargs} \
 		|| die "cmake configuration failed"
 }
+
+src_install() {
+	mkdir -p "${D}/usr/share/xsessions/"
+	cp "${FILESDIR}/Plex.desktop" "${D}/usr/share/xsessions/" || die "Unable to copy Xsession file"
+	mkdir -p "${D}/usr/bin"
+	cp "${FILESDIR}/plex-standalone.sh" "${D}/usr/bin/"
+	chmod a+x "${D}/usr/bin/plex-standalone.sh"
+}
