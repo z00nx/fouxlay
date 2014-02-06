@@ -4,7 +4,7 @@
 
 EAPI="2"
 
-inherit eutils
+inherit eutils user
 MAGIC1="290"
 MAGIC2="11b7fdd"
 URI="http://downloads.plexapp.com/plex-media-server/"
