@@ -57,7 +57,7 @@ src_unpack() {
 }
 
 src_prepare() {
-	epatch "${FILESDIR}/${P}-fribidi.patch"
+	epatch "${FILESDIR}/fribidi.patch"
 }
 
 src_configure() {
