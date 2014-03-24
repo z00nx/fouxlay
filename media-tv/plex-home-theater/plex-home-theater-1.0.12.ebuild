@@ -9,7 +9,7 @@ DESCRIPTION="For the ultimate experience, install Plex Home Theater on a dedicat
 HOMEPAGE="https://plex.tv"
 #SRC_URI="https://github.com/plexinc/plex-home-theater-public/archive/pht-v$PV.tar.gz"
 EGIT_REPO_URI="git://github.com/plexinc/plex-home-theater-public.git"
-EGIT_COMMIT="pht-v1.0.11"
+EGIT_COMMIT="pht-v1.0.12"
 
 SLOT="0"
 KEYWORDS="-* ~amd64"
