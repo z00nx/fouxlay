@@ -8,6 +8,7 @@ inherit eutils cmake-utils
 DESCRIPTION="For the ultimate experience, install Plex Home Theater on a dedicated computer for your TV. It's optimized for the big screen and supports a wide variety of formats with high-definition audio, native framerates, and more."
 HOMEPAGE="https://plex.tv"
 SRC_URI="https://github.com/plexinc/plex-home-theater-public/archive/pht-v$PV.tar.gz"
+IUSE="pulseaudio"
 
 SLOT="0"
 KEYWORDS="~amd64"
@@ -41,7 +42,8 @@ RDEPEND="media-libs/freetype
 	x11-libs/libvdpau
 	media-libs/libmodplug
 	dev-libs/libcdio
-	media-sound/lame"
+	media-sound/lame
+	pulseaudio? ( media-sound/pulseaudio )"
 
 DEPEND="$RDEPEND
 	dev-libs/yajl
@@ -59,6 +61,7 @@ src_unpack() {
 
 src_prepare() {
 	epatch "${FILESDIR}/fribidi.patch"
+	use pulseaudio || epatch "${FILESDIR}/nopulse.patch"
 }
 
 src_configure() {
