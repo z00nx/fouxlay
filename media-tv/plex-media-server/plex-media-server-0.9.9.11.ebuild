@@ -5,11 +5,11 @@
 EAPI="2"
 
 inherit eutils user
-MAGIC1="429"
-MAGIC2="f80a8d6"
+MAGIC1="501"
+MAGIC2="fd87a84"
 URI="http://downloads.plexapp.com/plex-media-server/"
 DESCRIPTION="Plex Media Server is a free media library that is intended for use with a plex client available for OS X, iOS and Android systems. It is a standalone product which can be used in conjunction with every program, that knows the API. For managing the library a web based interface is provided."
-HOMEPAGE="http://www.plexapp.com/"
+HOMEPAGE="http://www.plex.tv/"
 KEYWORDS="-* ~x86 ~amd64"
 SRC_URI="x86?	( 
 			${URI}/${PV}.${MAGIC1}-${MAGIC2}/plexmediaserver_${PV}.${MAGIC1}-${MAGIC2}_i386.deb
@@ -20,9 +20,9 @@ SRC_URI="x86?	(
 SLOT="0"
 LICENSE="PMS-License"
 IUSE=""
-
 RDEPEND="net-dns/avahi"
 DEPEND="${RDEPEND}"
+RESTRICT="fetch"
 
 INIT_SCRIPT="${ROOT}/etc/init/plexmediaserver"
 
@@ -100,4 +100,11 @@ pkg_postinst() {
 	einfo ""
 	ewarn "Please note, that the URL to the library management has changed from http://<ip>:32400/manage to http://<ip>:32400/web!"
 	ewarn "If the new management interface forces you to log into myPlex and afterwards gives you an error that you need to be a plex-pass subscriber please delete the folder WebClient.bundle inside the Plug-Ins folder found in your library!"
+}
+
+pkg_nofetch() {
+	einfo "Please download, depending on your architecture,  either"
+	einfo "  - plexmediaserver_${PV}.${MAGIC1}-${MAGIC2}_i386.deb"
+	einfo "  - or plexmediaserver_${PV}.${MAGIC1}-${MAGIC2}_amd64.deb"
+	einfo "From ${HOMEPAGE} and move it to ${DISTDIR}"
 }
