@@ -4,9 +4,9 @@
 
 EAPI="2"
 
-inherit eutils user
-MAGIC1="555"
-MAGIC2="50cd0c3"
+inherit eutils user systemd
+MAGIC1="585"
+MAGIC2="f31034e"
 URI="http://downloads.plexapp.com/plex-media-server/"
 DESCRIPTION="Plex Media Server is a free media library that is intended for use with a plex client available for OS X, iOS and Android systems. It is a standalone product which can be used in conjunction with every program, that knows the API. For managing the library a web based interface is provided."
 HOMEPAGE="http://www.plex.tv/"
@@ -86,6 +86,10 @@ pkg_preinst() {
 	fi
 }
 
+src_install() {
+	systemd_newunit "${FILESDIR}"/plex-media-server.service plex-media-server.service
+}
+
 pkg_prerm() {
 	einfo "Stopping running instances of Media Server"
 	if [ -e "${INIT_SCRIPT}" ]; then
@@ -102,9 +106,3 @@ pkg_postinst() {
 	ewarn "If the new management interface forces you to log into myPlex and afterwards gives you an error that you need to be a plex-pass subscriber please delete the folder WebClient.bundle inside the Plug-Ins folder found in your library!"
 }
 
-#pkg_nofetch() {
-#	einfo "Please download, depending on your architecture,  either"
-#	einfo "  - plexmediaserver_${PV}.${MAGIC1}-${MAGIC2}_i386.deb"
-#	einfo "  - or plexmediaserver_${PV}.${MAGIC1}-${MAGIC2}_amd64.deb"
-#	einfo "From ${HOMEPAGE} and move it to ${DISTDIR}"
-#}
