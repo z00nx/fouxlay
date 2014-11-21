@@ -11,7 +11,7 @@ SRC_URI="https://github.com/plexinc/plex-home-theater-public/archive/pht-v$PV.ta
 IUSE="pulseaudio"
 
 SLOT="0"
-KEYWORDS="~amd64"
+KEYWORDS="amd64"
 
 RDEPEND="media-libs/freetype
 	media-libs/libsdl[X,opengl]
