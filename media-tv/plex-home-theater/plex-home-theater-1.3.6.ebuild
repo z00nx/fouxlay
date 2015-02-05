@@ -8,8 +8,8 @@ inherit eutils cmake-utils
 DESCRIPTION="For the ultimate experience, install Plex Home Theater on a dedicated computer for your TV. It's optimized for the big screen and supports a wide variety of formats with high-definition audio, native framerates, and more."
 HOMEPAGE="https://plex.tv"
 
-MAGIC1="427"
-MAGIC2="1fa83b88"
+MAGIC1="441"
+MAGIC2="309e72d1"
 SRC_URI="https://github.com/plexinc/plex-home-theater-public/archive/v$PV.$MAGIC1-$MAGIC2.tar.gz -> pht-v$PV.tar.gz"
 IUSE="pulseaudio"
 
@@ -65,10 +65,14 @@ src_unpack() {
 src_prepare() {
 	epatch "${FILESDIR}/fribidi.patch"
 	use pulseaudio || epatch "${FILESDIR}/nopulse.patch"
+
+	#Patch ffmpeg building to use MAKEOPTS
+	sed -i -e "s/BUILD_COMMAND make -j 4/BUILD_COMMAND make ${MAKEOPTS}/" lib/ffmpeg/CMakeLists.txt
+
 }
 
 src_configure() {
-	local mycmakeargs="-DCOMPRESS_TEXTURES=on -DENABLE_AUTOUPDATE=off"
+	local mycmakeargs=( -DCMAKE_BUILD_TYPE='Release' -DCMAKE_INSTALL_PREFIX='/opt/plexhometheater' -DENABLE_AUTOUPDATE='FALSE' -DENABLE_DUMP_SYMBOLS='FALSE' -DENABLE_PYTHON='TRUE' -DPYTHON_EXEC='/usr/bin/python2' -DUSE_INTERNAL_FFMPEG='FALSE' -DCREATE_BUNDLE='FALSE' )
 	cmake-utils_src_configure ${mycmakeargs} \
 		|| die "cmake configuration failed"
 }
@@ -77,8 +81,8 @@ pkg_preinst() {
 	mkdir -p "${D}/usr/bin"
 	mkdir -p "${D}/usr/share/xsessions"
 	cp "${FILESDIR}/Plex.desktop" "${D}/usr/share/xsessions" || die "Unable to copy Xsession file"
-	cp "${FILESDIR}/plex-standalone.sh" "${D}/usr/bin" || die "Unable to copy standalone startup script"
-	cp "${FILESDIR}/start-plexht.sh" "${D}/usr/bin" || die "Unable to copy startup script"
+	cp "${FILESDIR}/plex-standalone-new.sh" "${D}/usr/bin/plex-standalone.sh" || die "Unable to copy standalone startup script"
+	cp "${FILESDIR}/start-plexht-new.sh" "${D}/usr/bin/start-plexht.sh" || die "Unable to copy startup script"
 	chmod a+x "${D}/usr/bin/plex-standalone.sh"
 	chmod a+x "${D}/usr/bin/start-plexht.sh"
 }
