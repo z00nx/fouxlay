@@ -1,7 +1,7 @@
 #!/bin/sh
  
 export XBMC_HOME=/opt/plexhometheater/share/XBMC
-XBMC="/opt/plexhometheater/bin/plexhometheater --standalone"
+XBMC="/usr/bin/plexhometheater --standalone"
  
 LOOP=1
 CRASHCOUNT=0
